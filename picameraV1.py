@@ -71,6 +71,16 @@ def cornersSort(corners):
     print('sort失敗，return原始corners')
     return corners
 
+def calAngle(p1, p2, p3):
+    def calDist(p1, p2):
+        return pow(((p2[0] - p1[0]) ** 2 + (p2[1] - p1[1]) ** 2), 0.5)
+    a = calDist(p2, p3)
+    b = calDist(p1, p2)
+    c = calDist(p1, p3)
+    cosA = (b * b + c * c - a * a) / (2 * b * c)
+    angle = math.acos(cosA) * 180 / math.pi
+    return f'{angle:.2f}'
+
 # cap = cv2.VideoCapture('E:\python-training/rico\覘標正常.mp4')
 # cap = cv2.VideoCapture('E:\python-training/rico\覘標全黑.mp4')
 # cap = cv2.VideoCapture('E:\python-training/rico\覘標偏暗.mp4')
@@ -140,10 +150,16 @@ while True:
         cv2.line(frame, cornersxy[8], cornersxy[2], (0, 250, 0), 2)
         cv2.line(frame, cornersxy[8], cornersxy[6], (0, 250, 0), 2)
         font = cv2.FONT_HERSHEY_TRIPLEX  # 設置字體
+        # cv2.putText(frame, f"{cornersxy[0]} {cornersxy[2]}", (20, 40), font, 1, (0, 0, 250))  # 顯示文字在圖上
+        # cv2.putText(frame, f"{cornersxy[6]} {cornersxy[8]}", (20, 120), font, 1, (0, 0, 250))  # 顯示文字在圖上
+        cv2.putText(frame, f"{calAngle(cornersxy[0], cornersxy[2], cornersxy[6])} {calAngle(cornersxy[2], cornersxy[0], cornersxy[8])}", (20, 40), font, 1, (0, 0, 250))  # 顯示文字在圖上
+        cv2.putText(frame, f"{calAngle(cornersxy[6], cornersxy[0], cornersxy[8])} {calAngle(cornersxy[8], cornersxy[2], cornersxy[6])}", (20, 120), font, 1, (0, 0, 250))  # 顯示文字在圖上
         cv2.putText(frame, "Deformation (x,y,z) cm= ", (20, 360), font, 1, (0, 0, 250))  # 顯示文字在圖上
         cv2.putText(frame, f'{((cornersxy[4][0] - firstcenterxy[0]) * xrate):7.2f}', (20, 400), font, 1, (0, 0, 250))
         cv2.putText(frame, f'{((cornersxy[4][1] - firstcenterxy[1]) * yrate):7.2f}', (140, 400), font, 1, (0, 0, 250))
         cv2.putText(frame, 'None', (280, 400), font, 1, (0, 0, 250))
+        # print(cornersxy[0], cornersxy[2])
+        # print(cornersxy[6], cornersxy[8])
         # -----------
     else:
         # 沒找到corners角點就continue
