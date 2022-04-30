@@ -150,8 +150,8 @@ while True:
         cv2.line(frame, cornersxy[8], cornersxy[2], (0, 250, 0), 2)
         cv2.line(frame, cornersxy[8], cornersxy[6], (0, 250, 0), 2)
         font = cv2.FONT_HERSHEY_TRIPLEX  # 設置字體
-        # cv2.putText(frame, f"{cornersxy[0]} {cornersxy[2]}", (20, 40), font, 1, (0, 0, 250))  # 顯示文字在圖上
-        # cv2.putText(frame, f"{cornersxy[6]} {cornersxy[8]}", (20, 120), font, 1, (0, 0, 250))  # 顯示文字在圖上
+        cv2.putText(frame, f"{cornersxy[0]} {cornersxy[2]}", (260, 40), font, 1, (0, 0, 250))  # 顯示文字在圖上
+        cv2.putText(frame, f"{cornersxy[6]} {cornersxy[8]}", (260, 120), font, 1, (0, 0, 250))  # 顯示文字在圖上
         cv2.putText(frame, f"{calAngle(cornersxy[0], cornersxy[2], cornersxy[6])} {calAngle(cornersxy[2], cornersxy[0], cornersxy[8])}", (20, 40), font, 1, (0, 0, 250))  # 顯示文字在圖上
         cv2.putText(frame, f"{calAngle(cornersxy[6], cornersxy[0], cornersxy[8])} {calAngle(cornersxy[8], cornersxy[2], cornersxy[6])}", (20, 120), font, 1, (0, 0, 250))  # 顯示文字在圖上
         cv2.putText(frame, "Deformation (x,y,z) cm= ", (20, 360), font, 1, (0, 0, 250))  # 顯示文字在圖上
