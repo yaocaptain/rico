@@ -150,16 +150,6 @@ while True:
         print(f'{random.randint(1, 100)}有畫面，但沒找到覘標！')
         # continue
     cv2.imshow('video', frame)
-    
-
-    # if ret1:
-    #     # cv2.imshow('video', corners)
-    #     cv2.imshow('video', frame)
-    # else:
-    #     cv2.imshow('video', frame)
-
-    # cv2.imshow('chessboard corners', frame)
-    # cv2.waitKey(10)
     if cv2.waitKey(1) == ord('q'):
         break
 cv2.destroyAllWindows()
